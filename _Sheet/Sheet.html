@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<!--<meta http-equiv="expires" content="86400"/>-->
+<script src="res/JZZ.js"></script>
+<script src="res/JZZ.midi.SMF.js"></script>
+<script src="res/JZZ.synth.Tiny.js"></script>
+<script src="res/pdf.js"></script> 
+<script src="res/sound.js"></script>
+<style>
+  * {padding:0;margin:0;overflow: hidden;}
+  span,input,button,select,label{font-size: 1.5vw}
+  h1{font-size: 3vm;}
+  table   {height: 100%; width: 100%}
+  tr.row1 {height: 10%}
+  tr.row2 {height: 90%}
+  td.col0 {width:   5%}
+  td.col1 {width:  100%;background-color:#ffa;vertical-align: middle}
+  td.col2 {width:  40%}
+  td.col3 {width:  25%}
+  
+  img{width: 80%;object-fit: contain}
+  
+  #btt {position: absolute;display:none;                          /*measure counter*/
+    left:0%;top :10%;width: 90%;height: 10%;background-color: #fff0;color: #000; 
+    font-size: 4em;}
+  
+  #rnv{                                                            /*vertical slider*/
+    position: absolute;
+    writing-mode: bt-lr; /*for IE */
+    -webkit-appearance: slider-vertical;} /* for chrome */
+  #rnv::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    background: #ccf;
+    width: 20px;}
+
+  #Box {position: absolute;
+    left:35%;top :35%;width: 30%;height: 30%;background-color: #ff0;color: #00f;}
+  #Metr  {position: absolute;display: none;z-index: 3;                             /*metronome*/
+    left:37%;top :28%;width: 30%;height: 60%;background-color: #0000;color: #00f;}
+  #Mets  {position:absolute;display:none;z-index:2;background-color:#efe4b0;       /*set and help*/
+    color: #000;left: 64%;top: 9%;width: 35%}
+  #Titl  {position: absolute;display: none;z-index: 8;background-color: #bbbb;     /*titles table*/
+    color: #000;left: 27%;top: 10%;width: 20%;height: 80%;overflow: auto;}
+  #Tims  {position: absolute;display: none;z-index: 8;background-color: #ffa;      /*timing table*/ 
+    color: #000;left: 50%;top: 9%;width: 40%;height: 65%;}
+  #Timt  {position: absolute;height: 75%;overflow: auto;}                          /*timing table 2*/
+
+  .rw1 {width: 8%;  height: 80%;}  
+  .rw2 {width: 15%; height: 80%;}
+  .rw3 {width: 10%; height: 80%;}
+  .rw4 {width: 68%; height: 80%;}
+  .rw5 {width: 25%; height: 80%;}
+
+  .rw11{width: 100%; height:100%;background-color: #0000;border-color: #0000;}  
+  .rw12{width: 100%; height:100%;}  
+
+  .rwt1 {width: 15%;}  
+  .rwt2 {width: 10%;}  
+  }
+  </style>
+  <link rel="icon" type="image/png" href="res/favicon.png"/>
+<!--------------------------------iubenda------------>
+<!----
+<a href="https://www.iubenda.com/privacy-policy/39596347" rel="noreferrer nofollow" target="_blank">Privacy Policy</a>
+- <a href="#" role="button" class="iubenda-advertising-preferences-link">Personalizza tracciamento pubblicitario</a>
+-->
+</head>
+<body>
+  <div id="btt"></div>
+  <div id="Metr" align="center">
+    <canvas id="mtnv"></canvas>
+  </div>
+  <div id="Mets">
+   <!--  ini div metronome hide --> 
+    <div style="display:block;"> 
+      <br><span>-------Speed : </span>
+      <input type="range" id="spdr"  min=-50 max=150 value=0 style="width:300px" 
+        onchange="SetSpeed(this.value)"><br>
+      <br><span>-------Measure cursor bar : </span>
+      <input id="ckmm"  type="checkbox" style="width:10%;" checked><br>
+      <br><span>-------Midi sound : </span>
+      <input id="ckmd"  type="checkbox" style="width:10%;" checked><br>
+      <br><span>-------Metronome buzz : </span>
+      <input id="ckms"  type="checkbox" style="width:10%;"><br>
+      <br><span>-------Metronome transparency : </span>        
+      <input type="range" id="trsp"  min=0 max=100 value=40 onchange="SetAlpha(this.value)"><br>
+      <br><span>-------Measure test detect : </span>        
+      <input id="ckmt"  type="checkbox" style="width:10%;"><br>
+      <br><br>
+    </div> 
+    <div style="display:none;">
+      <input type="text"  id="dt1" name="">
+      <input type="text"  id="dt2" name="">
+      <input type="text"  id="dt3" name="">
+      <input type="text"  id="dt4" name="">
+    </div>&ensp;
+<!--- end of div metronome hide -->                    
+<!---    <span style="font-size: 2vw;">------------Help----------------------- </span><br>-->
+    &emsp;<button class="rw5" onclick="Print()">Stampa</button><br><br>
+<!--
+    &emsp;<span> SlowLoad:</span>
+    <input type="checkbox" style="width:10%;" onchange="SetDelay(this.checked)"><br><br>
+    <span>if page is incomplete check SlowLoad  and reload.</span><br>.
+-->    
+  </div>
+  <div id="Box" align="center" style="display:none;">
+    <h1 id="PgL">...await loading pages...</h1>    
+  </div>
+  <img id="Splash" src="res/Splash.png" style="display:none;">
+  <div id="Tims" align="center">
+    <button onclick="SaveTime()">Save Timing</button>&emsp;&emsp;<br><br>
+    <span>Bpm: </span> 
+    <input id="bpm2" class="rwt1" type="number" min="40" max="200" value="80">
+    <input id="num2" class="rwt2" type="number" min="2" max="16" value="4"><span> / </span>
+    <input id="den2" class="rwt2" type="number" min="2" max="16" value="4">
+    <div id="Timt"></div>
+  </div>
+  <table border="1">
+    <tr class="row1"><td class="col1" id="tdcol1">
+      <label for="Gen"> Brani: </label>&emsp;
+      <select id="Sgen" name="Gen" onchange="SetSong()" style="width: 11%; font-size:1.4em"> 
+      </select>&emsp;
+      <select id="Saz" name="Saz" onchange="SetSong()" style="width: 6%; font-size:1.4em">
+        <option value="0">Tutti</option>
+        <option value="0..9">0..9</option>
+        <option value="A..D">A..D</option>
+        <option value="E..H">E..H</option>
+        <option value="I..L">I..L</option>
+        <option value="M..P">M..P</option>
+        <option value="Q..T">Q..T</option>
+        <option value="U..Z">U..Z</option>
+      </select >&emsp;&emsp;
+      <input id="Sson"style="width: 25%;"type="text"name=""onclick="SetSong()"readonly="readonly">
+      &emsp;<div id="Titl"></div>
+      <button id="BtTime" style="width:4%; background-color:yellow;"onclick="ViewTims()" 
+      title="Timing">Time</button>&emsp;&emsp;
+      <button id="btPlay" onclick="Play(1)" style="width: 32px; height: 32px; background:url('res/Play.gif') no-repeat;"value="0"  disabled></button>&emsp;&emsp;  
+      <button id="btStop"onclick="Play(2)" style="width: 32px; height: 32px; background:url('res/Stop.gif') no-repeat;"disabled></button>&emsp;&emsp; 
+      <input id="tbpm" type="Text"  style="width:4%"disabled>&emsp;&emsp; 
+      <button id="mdat"onclick="MetrOnOff()" style="width: 32px; height: 32px; background:url('res/Metr.png') no-repeat;background-color:yellow "></button>&emsp;&emsp;
+      <button style="width:5%; background-color: yellow;"onclick="SetMet()" title="Set Metronome/
+      Help">Set</button>&emsp;
+      <input id="Vpx" type="text" name="" style="width:8%" value="Ver.5.2" disabled>
+    </td></tr>
+    <tr class="row2"><td style="background-color:#aaf"> 
+      <div style="display:none">  
+        <canvas id="hsnv"></canvas>
+      </div>
+      <div style="display:block">
+        <canvas id="scnv"></canvas>
+      </div>
+      <input id="rnv" type="range"  min="0" max="100" value="0" onmousemove="Doframe(true)" style="display:block" >
+    </td></tr>
+  </table>
+  <canvas id="ccnv" style=".display: none;"></canvas>
+<!------------------------------------------------------------>  
+</body>
+</html>
+<script src="res/sheet.js"></script>

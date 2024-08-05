@@ -1,0 +1,53 @@
+<Musica>
+	<!--...GENERE.....................................ID......................   ALFA    -->   
+  <Gn><A>Italiani</A>								<B>0</B>	</Gn>         <!--0..9-->
+	<Gn><A>Napoletani</A>							<B>1</B>	</Gn>         <!--A..D-->  
+	<Gn><A>Stranieri</A>							<B>2</B>	</Gn>         <!--E..H-->
+  <Gn><A>Classici</A>               <B>3</B>  </Gn>         <!--I..L-->
+  <Gn><A>Vari</A>                   <B>4</B>  </Gn>         <!--M..P-->
+                                                            <!--U..Z-->
+	<!--...ALFA.......ID.......TITLE.....................................Test...-->
+    <Br><A>A..D</A><B>1</B> <C>Core ngrato</C>                        <D>0</D></Br> 
+    <Br><A>E..H</A><B>1</B> <C>E spingule francesi</C>                <D>0</D></Br> 
+    <Br><A>E..H</A><B>1</B> <C>Guapparia</C>                          <D>1</D></Br> 
+    <Br><A>M..P</A><B>1</B> <C>Mandulinata a Napule</C>               <D>1</D></Br>
+    <Br><A>M..P</A><B>1</B> <C>Maria Mari</C>                         <D>1</D></Br>
+    <Br><A>M..P</A><B>1</B> <C>Munasterio e Santa Chiara</C>          <D>1</D></Br>
+    <Br><A>M..P</A><B>1</B> <C>Na sera e maggio</C>                   <D>1</D></Br>
+    <Br><A>M..P</A><B>1</B> <C>O Marenariello</C>                     <D>1</D></Br>
+    <Br><A>M..P</A><B>1</B> <C>O paese do sole</C>                    <D>1</D></Br>
+    <Br><A>M..P</A><B>1</B> <C>Palummella</C>                         <D>1</D></Br>
+    <Br><A>M..P</A><B>1</B>	<C>Piscatore e Pusilleco</C>              <D>1</D></Br>
+    <Br><A>Q..T</A><B>1</B> <C>Reginella</C>                          <D>1</D></Br>
+    <Br><A>Q..T</A><B>1</B> <C>Resta cu mme</C>                       <D>1</D></Br>
+    <Br><A>Q..T</A><B>1</B> <C>Silenzio cantatore</C>                 <D>1</D></Br>
+    <Br><A>Q..T</A><B>1</B> <C>Torna a Surriento</C>                  <D>1</D></Br>
+    <Br><A>Q..T</A><B>1</B> <C>Tu si na cosa grande</C>               <D>1</D></Br>
+    <Br><A>U..Z</A><B>1</B> <C>Vurria</C>                             <D>1</D></Br>  
+    <Br><A>U..Z</A><B>1</B> <C>Vurria(Dm)</C>                         <D>1</D></Br>  
+    <Br><A>U..Z</A><B>1</B> <C>Voce e notte</C>                       <D>0</D></Br>  
+    <Br><A>A..D</A><B>0</B> <C>Come le viole</C>                      <D>1</D></Br>
+    <Br><A>E..H</A><B>0</B> <C>Ho difeso il mio amore</C>             <D>1</D></Br>
+    <Br><A>I..L</A><B>0</B> <C>Il ritorno di Popoff</C>               <D>1</D></Br>
+    <Br><A>I..L</A><B>0</B> <C>La musica e finita</C>                 <D>1</D></Br>
+    <Br><A>I..L</A><B>0</B> <C>Luna Caprese</C>                       <D>1</D></Br>
+    <Br><A>Q..T</A><B>0</B> <C>Quel treno per Yuma</C>                <D>1</D></Br>
+    <Br><A>U..Z</A><B>0</B> <C>Valzer dell organino</C>               <D>1</D></Br>
+    <Br><A>U..Z</A><B>0</B> <C>Vecchio frack</C>                      <D>1</D></Br>
+    <Br><A>A..D</A><B>2</B> <C>Apache</C>                             <D>0</D></Br>
+    <Br><A>A..D</A><B>2</B> <C>Dark eyes</C>                          <D>0</D></Br>
+    <Br><A>E..H</A><B>2</B> <C>Eleanor Rigby</C>                      <D>0</D></Br>
+    <Br><A>E..H</A><B>2</B> <C>Ghost rider in the sky</C>             <D>0</D></Br>
+    <Br><A>E..H</A><B>2</B> <C>Hotel California</C>                   <D>0</D></Br>
+    <Br><A>Q..T</A><B>2</B> <C>Samba Pa Ti</C>                        <D>0</D></Br>
+    <Br><A>Q..T</A><B>2</B> <C>The 3 10 to Yuma</C>                   <D>0</D></Br>
+    <Br><A>Q..T</A><B>2</B> <C>The house of the rising sun</C>        <D>0</D></Br>
+    <Br><A>U..Z</A><B>2</B> <C>Woman in love</C>                      <D>0</D></Br>
+    <Br><A>A..D</A><B>3</B> <C>Bolero</C>                             <D>0</D></Br>
+    <Br><A>Q..T</A><B>4</B> <C>Soldiers Joy 1</C>                     <D>0</D></Br>
+    <Br><A>Q..T</A><B>4</B> <C>Soldiers Joy 2</C>                     <D>0</D></Br>
+    <Br><A>Q..T</A><B>4</B> <C>Soldiers Joy Jump</C>                  <D>0</D></Br>
+    <Br><A>Q..T</A><B>4</B> <C>The Sound of Silence</C>               <D>0</D></Br>
+  </Musica>
+
+		
